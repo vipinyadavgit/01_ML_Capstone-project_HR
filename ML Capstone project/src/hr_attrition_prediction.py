@@ -28,7 +28,7 @@ from sklearn.metrics import (
     precision_score, recall_score, f1_score,
     classification_report
 )
-from scipy.stats import skew
+
 warnings.filterwarnings('ignore')
 
 # folder to save all plots; old images get overwritten automatically on re-run
@@ -47,7 +47,7 @@ print("Dataset loaded. Shape:", df.shape)
 # We look at the data to understand its structure before building any model
 print("\n EDA")
 
-# Basic checks: shape, types, stats, first rows
+# Basic checks: shape, types, first rows
 print("\n--- Basic Info ---")
 print("Shape:", df.shape)
 df.info()
