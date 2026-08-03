@@ -1,13 +1,210 @@
-# HR Attrition Prediction – Capstone Project
 
-This project was built as part of a Data Science capstone. The goal is simple: use machine learning to predict whether an employee is likely to leave the company or not, and figure out what's driving that decision.
+# 🏢 HR Employee Attrition Prediction
+
+#   Goal
+> *Predicting whether an employee will leave — and understanding why.*
 
 ---
 
-## What this project does
+## 📌 Overview
 
-- Loads the HR dataset and does a full analysis (missing values, outliers, distributions, etc.)
-- Builds 5 different ML models and compares them
+Employee attrition costs organizations time, money, and institutional knowledge. This project tackles that problem using machine learning — not just predicting *who* will leave, but identifying *what's driving* those decisions and giving HR teams something they can actually act on.
+
+Built as a full Data Science capstone, this project covers every step from raw data to business recommendations.
+
+---
+
+## 🎯 Business Problem
+
+| Item | Detail |
+|---|---|
+| **Client** | HR Department — Mid-size Enterprise |
+| **Problem** | Rising employee attrition causing high hiring costs and productivity loss |
+| **ML Task** | Binary Classification — Predict Attrition: Yes / No |
+| **Success Metric** | F1-Score (primary), Accuracy ≥ 80% |
+| **Key Deliverable** | Explainable model + actionable HR recommendations |
+
+---
+
+## 🗂️ Project Structure
+
+```
+ML Capstone project/
+│
+├── 📁 dataset/
+│   └── HR-Employee-Attrition.csv        → 1470 employees, 35 features
+│
+├── 📁 docs/
+│   ├── HR attrition BRD.docx            → Business Requirement Document
+│   ├── Final capstone project.docx      → Project brief & assignment
+│   ├── ML rule book.md                  → Step-by-step technical rules
+│   └── Sample Project Document.pdf      → Reference output format
+│
+├── 📁 output_plots/
+│   ├── 01_outlier_boxplots.png
+│   ├── 02_target_distribution.png
+│   ├── 03_univariate_numerical.png
+│   ├── 04_univariate_categorical.png
+│   ├── 05_bivariate_categorical_vs_attrition.png
+│   ├── 06_bivariate_numerical_vs_attrition.png
+│   ├── 07_correlation_heatmap.png
+│   └── 08_feature_importance.png        → Top 15 drivers of attrition
+│
+├── 📄 hr_attrition_prediction.py        → Main script (run this)
+├── 📄 Readme.md                         → You are here
+└── 📁 .venv/                            → Virtual environment
+```
+
+---
+
+## 🚀 How to Run
+
+**1. Activate the virtual environment**
+```bash
+.venv\Scripts\Activate.ps1
+```
+
+**2. Run the script**
+```bash
+python hr_attrition_prediction.py
+```
+
+All output prints to the terminal. All 8 plots are saved automatically to `output_plots/`.
+
+---
+
+## 📊 What the Script Does — Step by Step
+
+```
+STEP 1  →  Import Libraries
+STEP 2  →  Load Dataset                    (1470 rows × 35 columns)
+STEP 3  →  Exploratory Data Analysis
+           ├── Basic info, shape, dtypes
+           ├── Drop useless columns         (EmployeeNumber, EmployeeCount, Over18, StandardHours)
+           ├── Null & duplicate check
+           ├── Outlier detection (IQR)      (10 columns flagged)
+           ├── Univariate analysis          (histograms + bar charts)
+           ├── Bivariate analysis           (feature vs Attrition)
+           └── Correlation heatmap
+STEP 4  →  Feature Engineering
+           ├── Encode target: Yes=1, No=0
+           ├── Binary encoding              (Gender, OverTime)
+           ├── Ordinal encoding             (BusinessTravel)
+           └── One-Hot Encoding             (Department, EducationField, JobRole, MaritalStatus)
+STEP 5  →  Model Building                  (5 models trained)
+STEP 5b →  5-Fold Stratified Cross-Validation
+STEP 5c →  Hyperparameter Tuning           (GridSearchCV)
+STEP 6  →  Model Evaluation                (Accuracy, Precision, Recall, F1, Confusion Matrix)
+STEP 7  →  Feature Importance              (Random Forest — Top 15 features)
+STEP 8  →  Sample Predictions              (2 employees from test set)
+STEP 9  →  Business Recommendations
+```
+
+---
+
+## 🤖 Models Trained & Compared
+
+| # | Model | Why Used |
+|---|---|---|
+| 1 | **Logistic Regression** | Simple, interpretable baseline for binary classification |
+| 2 | **Decision Tree** | Explainable rules, easy to present to non-technical teams |
+| 3 | **Random Forest** | Strong ensemble model, used for feature importance |
+| 4 | **KNN** | Non-parametric, good for comparison |
+| 5 | **Naive Bayes** | Fast probabilistic classifier, handles small data well |
+
+> All models use `class_weight='balanced'` (where applicable) to handle the class imbalance (84% No Attrition vs 16% Yes).  
+> Best model is selected automatically based on **F1-Score**.
+
+---
+
+## 📈 Results Summary
+
+| Model | Accuracy | Precision | Recall | F1-Score |
+|---|---|---|---|---|
+| **Logistic Regression** ⭐ | 0.77 | 0.38 | 0.68 | **0.48** |
+| Random Forest | 0.83 | 0.48 | 0.47 | 0.47 |
+| Decision Tree | 0.77 | 0.35 | 0.53 | 0.42 |
+| Naive Bayes | 0.62 | 0.25 | 0.70 | 0.37 |
+| KNN | 0.82 | 0.31 | 0.11 | 0.16 |
+
+> ⭐ Best model by F1-Score: **Logistic Regression**
+
+---
+
+## 🔍 Top Attrition Drivers (Feature Importance)
+
+Based on the Random Forest model:
+
+| Rank | Feature | Importance |
+|---|---|---|
+| 1 | TotalWorkingYears | 0.088 |
+| 2 | OverTime | 0.084 |
+| 3 | Age | 0.076 |
+| 4 | MonthlyIncome | 0.071 |
+| 5 | YearsWithCurrManager | 0.065 |
+| 6 | YearsAtCompany | 0.058 |
+| 7 | StockOptionLevel | 0.042 |
+| 8 | YearsInCurrentRole | 0.041 |
+
+---
+
+## 💡 Business Recommendations
+
+Based on model insights, HR should prioritize:
+
+| # | Recommendation | Why It Matters |
+|---|---|---|
+| 1 | **Reduce Overtime** | OverTime is the #2 driver — employees on mandatory overtime are at significantly higher attrition risk |
+| 2 | **Improve Salary Hikes** | Low `PercentSalaryHike` correlates with higher attrition — regular pay reviews reduce risk |
+| 3 | **Focus on Engagement** | Low `JobSatisfaction` and `JobInvolvement` scores are early warning signs — invest in 1-on-1s and engagement programs |
+
+---
+
+## 📂 Documents Guide
+
+| Document | Purpose | Read When |
+|---|---|---|
+| `HR attrition BRD.docx` | Business problem, KPIs, success criteria | Start here — understand the "why" |
+| `Final capstone project.docx` | Assignment brief, task list, evaluation criteria | Understand what needs to be delivered |
+| `ML rule book.md` | Technical step-by-step rules for the project | Follow this during implementation |
+| `Sample Project Document.pdf` | Reference example of final deliverable | Useful for preparing presentation/report |
+
+---
+
+## ⚙️ Tech Stack & Requirements
+
+| Package | Version |
+|---|---|
+| Python | 3.10.5 |
+| scikit-learn | 1.7.2 |
+| pandas | 2.3.3 |
+| numpy | 2.2.6 |
+| matplotlib | 3.x |
+| seaborn | 0.13.2 |
+| scipy | latest |
+
+**Install all dependencies:**
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn scipy
+```
+
+---
+
+## 📁 Dataset Info
+
+- **File:** `dataset/HR-Employee-Attrition.csv`
+- **Rows:** 1,470 employees
+- **Features:** 35 columns → 31 after dropping constant columns
+- **Target:** `Attrition` (Yes = 1 / No = 0)
+- **Class split:** 84% No Attrition · 16% Yes Attrition (imbalanced)
+
+---
+
+<div align="center">
+
+*HR Attrition Prediction · Data Science Capstone · 2026*
+
+</div>
 - Tunes each model to get the best settings
 - Shows which factors matter most for attrition
 - Predicts attrition for new/sample employees
@@ -121,17 +318,3 @@ Three columns were dropped before modeling because they carry no useful informat
 
 ## Requirements
 
-Python 3.10+
-
-Packages used:
-- pandas
-- numpy
-- matplotlib
-- seaborn
-- scikit-learn
-- scipy
-
-Install them with:
-```
-pip install pandas numpy matplotlib seaborn scikit-learn scipy
-```
