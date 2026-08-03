@@ -709,7 +709,7 @@ print("                        Conduct regular pay reviews and benchmarking.")
 print("  3. Focus on Employee Engagement : Low JobSatisfaction and")
 print("                        JobInvolvement increase attrition risk.")
 print("                        Invest in engagement programs and 1-on-1s.")
-print("=" * 60)
+
 
 print("PROJECT COMPLETE")
 
