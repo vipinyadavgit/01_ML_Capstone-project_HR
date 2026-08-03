@@ -5,7 +5,7 @@
 # =============================================================================
 
 
-# -- STEP 1: Import Libraries --
+# Import Libraries 
 import os
 import warnings
 import numpy as np
@@ -31,7 +31,7 @@ from sklearn.metrics import (
 
 warnings.filterwarnings('ignore')
 
-# folder to save all plots; old images get overwritten automatically on re-run
+# folder to save all plots
 os.makedirs("output_plots", exist_ok=True)
 
 
@@ -103,7 +103,6 @@ for col in cat_cols:
 
 
 # Outlier detection using IQR method
-# We check every numerical column one by one
 print("\n--- Outlier Check (IQR Method) ---")
 for col in num_cols:
     Q1    = df[col].quantile(0.25)
@@ -141,8 +140,7 @@ plt.savefig("output_plots/01_outlier_boxplots.png", dpi=150, bbox_inches='tight'
 plt.show()
 print("[Saved] 01_outlier_boxplots.png")
 
-# Target variable distribution (check class imbalance)
-# Attrition datasets usually have very few Yes compared to No
+# Target 
 print("\n--- Target Variable: Attrition ---")
 print(df['Attrition'].value_counts())
 
@@ -159,7 +157,6 @@ plt.show()
 print("[Saved] 02_target_distribution.png")
 
 # Univariate analysis: histograms for numerical columns
-# Helps us see the spread and shape of each feature individually
 plt.figure(figsize=(16, 12))
 
 plt.subplot(3, 3, 1)
@@ -244,7 +241,7 @@ plt.show()
 print("[Saved] 04_univariate_categorical.png")
 
 # Bivariate analysis: how each feature relates to Attrition
-# This tells us WHY employees are leaving - key for business recommendations
+# This tells us WHY employees are leaving - useful for business recommendations
 print("\n--- Bivariate Analysis (Feature vs Attrition) ---")
 
 no_attr  = df[df['Attrition'] == 'No']
@@ -302,8 +299,6 @@ plt.show()
 print("[Saved] 05_bivariate_categorical_vs_attrition.png")
 
 # Histogram:-  numerical features vs Attrition
-# overlapping histograms: No Attrition (blue) vs Attrition (red) for each numerical feature
-# alpha=0.6 makes bars semi-transparent so both groups are visible where they overlap
 plt.figure(figsize=(16, 10))
 
 plt.subplot(2, 3, 1)
@@ -411,7 +406,7 @@ print("Scaling done.")
 
 
 # Model Building
-# Train 5 different classification models one by one
+# Training 5 different classification models one by one
 # class_weight='balanced' handles class imbalance automatically
 
 print("\nSTEP 5: MODEL BUILDING")
@@ -653,8 +648,6 @@ print("Accuracy :", round(best_row['Accuracy'], 4))
 
 # Feature Importance (using Random Forest)
 
-# The score tells us: how important was this column in deciding Yes/No attrition?
-# Higher score = that feature influenced the prediction more
 print("\nFEATURE IMPORTANCE (Random Forest)")
 
 feature_names = X.columns.tolist()
