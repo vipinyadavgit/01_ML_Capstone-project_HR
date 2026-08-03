@@ -35,8 +35,7 @@ warnings.filterwarnings('ignore')
 os.makedirs("output_plots", exist_ok=True)
 
 
-# STEP 2: Load Dataset
-# Load the CSV file provided by HR department
+# Load Dataset
 print(" LOADING DATASET")
 
 df = pd.read_csv("../dataset/HR-Employee-Attrition.csv")
@@ -353,10 +352,10 @@ plt.show()
 print("[Saved] 07_correlation_heatmap.png")
 
 
-# =============================================================================
+
 # Feature Engineering
 # Convert text columns to numbers so ML model can understand them
-# =============================================================================
+
 print("\nS FEATURE ENGINEERING")
 
 # work on a copy so original df is not changed
