@@ -318,3 +318,17 @@ Three columns were dropped before modeling because they carry no useful informat
 
 ## Requirements
 
+| Package | Version |
+|---|---|
+| Python | 3.10.5 |
+| scikit-learn | 1.7.2 |
+| pandas | 2.3.3 |
+| numpy | 2.2.6 |
+| matplotlib | 3.x |
+| seaborn | 0.13.2 |
+| scipy | latest |
+
+**Install all dependencies:**
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn scipy
+```
