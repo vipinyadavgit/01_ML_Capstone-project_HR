@@ -698,19 +698,6 @@ print("  Probability:", round(sample_probability[1] * 100, 2), "%")
 print("\nAll plots saved to:", os.path.abspath("output_plots"))
 
 
-print("BUSINESS RECOMMENDATIONS")
-
-print("Based on model insights, HR should focus on:")
-print("  1. Reduce Overtime  : Employees working overtime are at")
-print("                        significantly higher risk of attrition.")
-print("                        Limit mandatory overtime and offer comp-off.")
-print("  2. Improve Salary Hikes : Low PercentSalaryHike is a key driver.")
-print("                        Conduct regular pay reviews and benchmarking.")
-print("  3. Focus on Employee Engagement : Low JobSatisfaction and")
-print("                        JobInvolvement increase attrition risk.")
-print("                        Invest in engagement programs and 1-on-1s.")
-
-
 print("PROJECT COMPLETE")
 
 
