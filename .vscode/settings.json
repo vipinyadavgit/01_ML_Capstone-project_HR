@@ -1,0 +1,4 @@
+{
+  "terminal.integrated.cwd": "${workspaceFolder}/ML Capstone project/src",
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe"
+}
